@@ -18,8 +18,7 @@ import java.io.InputStream;
  */
 public class FirestoreContext {
 
-    // TODO: Replace with your actual Firebase Storage bucket name
-    private static final String STORAGE_BUCKET = "your-project-id.appspot.com";
+    private static final String STORAGE_BUCKET = "csc325-83c8a.firebasestorage.app";
 
     public Firestore firebase() {
         try {
