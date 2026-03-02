@@ -7,7 +7,6 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
-import com.google.firebase.auth.FirebaseAuthException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -86,6 +85,22 @@ public class AccessFBView implements Initializable {
         }
 
         setStatus("Ready");
+
+        // Load saved profile picture from Firebase
+        if (App.currentUserEmail != null) {
+            String uid = App.currentUserEmail.replace("@", "_").replace(".", "_");
+            new Thread(() -> {
+                try {
+                    var doc = App.fstore.collection("users").document(uid).get().get();
+                    if (doc.exists() && doc.contains("profilePicUrl")) {
+                        String url2 = doc.getString("profilePicUrl");
+                        Platform.runLater(() -> profileImageView.setImage(new Image(url2)));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
     }
 
     // =========================================================
@@ -114,7 +129,7 @@ public class AccessFBView implements Initializable {
 
     @FXML
     private void handleClose(ActionEvent e) {
-        javafx.application.Platform.exit();
+        Platform.exit();
     }
 
     @FXML
@@ -172,8 +187,8 @@ public class AccessFBView implements Initializable {
     // =========================================================
 
     public void addData() {
-        String name  = nameField.getText().trim();
-        String major = majorField.getText().trim();
+        String name   = nameField.getText().trim();
+        String major  = majorField.getText().trim();
         String ageStr = ageField.getText().trim();
 
         if (name.isEmpty() || major.isEmpty() || ageStr.isEmpty()) {
@@ -199,10 +214,8 @@ public class AccessFBView implements Initializable {
 
         ApiFuture<WriteResult> result = docRef.set(data);
 
-        // Add to table immediately (optimistic)
-        Person newPerson = new Person(name, major, age);
-        personList.add(newPerson);
-
+        // Add to table immediately
+        personList.add(new Person(name, major, age));
         clearForm(null);
         setStatus("Record added: " + name);
     }
@@ -226,7 +239,8 @@ public class AccessFBView implements Initializable {
                     String major = String.valueOf(doc.getData().getOrDefault("Major", ""));
                     int age = 0;
                     try {
-                        age = Integer.parseInt(String.valueOf(doc.getData().getOrDefault("Age", "0")));
+                        age = Integer.parseInt(String.valueOf(
+                                doc.getData().getOrDefault("Age", "0")));
                     } catch (NumberFormatException ignored) {}
                     fetched.add(new Person(name, major, age));
                 }
@@ -239,7 +253,8 @@ public class AccessFBView implements Initializable {
 
             } catch (InterruptedException | ExecutionException ex) {
                 ex.printStackTrace();
-                Platform.runLater(() -> setStatus("Error reading from Firebase: " + ex.getMessage()));
+                Platform.runLater(() ->
+                        setStatus("Error reading from Firebase: " + ex.getMessage()));
             }
         }).start();
 
@@ -264,12 +279,10 @@ public class AccessFBView implements Initializable {
 
         if (selectedFile == null) return;
 
-        // Update local preview immediately
-        Image localImage = new Image(selectedFile.toURI().toString());
-        profileImageView.setImage(localImage);
+        // Show preview immediately
+        profileImageView.setImage(new Image(selectedFile.toURI().toString()));
         setStatus("Uploading profile picture...");
 
-        // Upload to Firebase Storage in background
         new Thread(() -> {
             try {
                 uploadToFirebaseStorage(selectedFile);
@@ -278,18 +291,12 @@ public class AccessFBView implements Initializable {
                 ex.printStackTrace();
                 Platform.runLater(() ->
                         setStatus("Upload failed: " + ex.getMessage()
-                                + "  (Image shown locally)"));
+                                + " (Image shown locally)"));
             }
         }).start();
     }
 
-    /**
-     * Uploads a file to Firebase Storage using the Firebase Admin SDK.
-     * Requires firebase-admin with storage support and a storage bucket
-     * configured in FirestoreContext / FirebaseOptions (storageBucket).
-     */
     private void uploadToFirebaseStorage(File file) throws Exception {
-        // Build a unique storage path for this user's profile picture
         String uid = (App.currentUserEmail != null)
                 ? App.currentUserEmail.replace("@", "_").replace(".", "_")
                 : "anonymous";
@@ -313,13 +320,24 @@ public class AccessFBView implements Initializable {
             storage.create(blobInfo, fis.readAllBytes());
         }
 
-        System.out.println("Uploaded profile picture to: " + storagePath);
+        // Build public download URL
+        String bucket = com.google.firebase.cloud.StorageClient.getInstance().bucket().getName();
+        String encodedPath = storagePath.replace("/", "%2F");
+        String downloadUrl = "https://firebasestorage.googleapis.com/v0/b/"
+                + bucket + "/o/" + encodedPath + "?alt=media";
+
+        // Save URL to Firestore so it persists across sessions
+        Map<String, Object> data = new HashMap<>();
+        data.put("profilePicUrl", downloadUrl);
+        App.fstore.collection("users").document(uid).set(data);
+
+        System.out.println("Profile picture saved: " + downloadUrl);
     }
 
     private String detectContentType(String filename) {
         String lower = filename.toLowerCase();
-        if (lower.endsWith(".png"))  return "image/png";
-        if (lower.endsWith(".gif"))  return "image/gif";
+        if (lower.endsWith(".png")) return "image/png";
+        if (lower.endsWith(".gif")) return "image/gif";
         return "image/jpeg";
     }
 

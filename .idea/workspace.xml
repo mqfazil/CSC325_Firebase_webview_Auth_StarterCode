@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Complete menu implementation, redirect output to TableView, enable profile picture upload to Firebase Storage">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Fix issues in menu bar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/files/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772489032723</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix issues in menu bar">
+      <option name="closed" value="true" />
+      <created>1772490333768</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1772490333768</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +240,7 @@
     <MESSAGE value="GUI update" />
     <MESSAGE value="Create a splash screen and a registration/signin form" />
     <MESSAGE value="Complete menu implementation, redirect output to TableView, enable profile picture upload to Firebase Storage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete menu implementation, redirect output to TableView, enable profile picture upload to Firebase Storage" />
+    <MESSAGE value="Fix issues in menu bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix issues in menu bar" />
   </component>
 </project>
