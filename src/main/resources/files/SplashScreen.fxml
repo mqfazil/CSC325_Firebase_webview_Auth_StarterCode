@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="400.0" prefWidth="600.0"
+           xmlns="http://javafx.com/javafx/20.0.1"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.csc325_firebase_webview_auth.view.SplashController"
+           styleClass="splash-root">
+    <children>
+        <VBox alignment="CENTER" spacing="24.0">
+            <children>
+                <Label text="📚" styleClass="splash-icon" />
+                <Label text="Student Registry" styleClass="splash-title" />
+                <Label text="Firebase-Powered Management System" styleClass="splash-subtitle" />
+                <ProgressBar fx:id="progressBar" prefWidth="300.0" progress="0.0" styleClass="splash-progress" />
+                <Label fx:id="statusLabel" text="Initializing..." styleClass="splash-status" />
+            </children>
+            <padding>
+                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+        </VBox>
+    </children>
+</StackPane>
