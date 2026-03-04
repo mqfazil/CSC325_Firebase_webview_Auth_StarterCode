@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Fix issues in menu bar">
+    <list default="true" id="e4ae5f67-a013-4cbc-a589-49fa29fa9b6b" name="Changes" comment="Reload profile picture from Firebase">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/csc325_firebase_webview_auth/view/AccessFBView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/files/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/files/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +50,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/alrajam/IdeaProjects/CSC325_Firebase_webview_Auth",
+    "last_opened_file_path": "/Users/mquorishi/IdeaProjects/CSC325 - SOFTWARE ENGIN./CSC325_Firebase_webview_Auth_StarterCode",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -165,6 +165,8 @@
       <workItem from="1710733353801" duration="5503000" />
       <workItem from="1772465061735" duration="2318000" />
       <workItem from="1772484181419" duration="456000" />
+      <workItem from="1772646001212" duration="935000" />
+      <workItem from="1772647010800" duration="35000" />
     </task>
     <task id="LOCAL-00001" summary="reduce Java version to 17">
       <option name="closed" value="true" />
@@ -214,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772490333768</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Reload profile picture from Firebase">
+      <option name="closed" value="true" />
+      <created>1772490483487</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1772490483487</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +251,7 @@
     <MESSAGE value="Create a splash screen and a registration/signin form" />
     <MESSAGE value="Complete menu implementation, redirect output to TableView, enable profile picture upload to Firebase Storage" />
     <MESSAGE value="Fix issues in menu bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix issues in menu bar" />
+    <MESSAGE value="Reload profile picture from Firebase" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reload profile picture from Firebase" />
   </component>
 </project>
