@@ -72,7 +72,7 @@
             <padding><Insets bottom="20.0" left="15.0" right="15.0" top="20.0" /></padding>
         </VBox>
 
-        <!-- CENTER: TableView -->
+        <!-- CENTER: TableView f9f9f9-->
         <VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="8.0"
               style="-fx-background-color:#f9f9f9;">
             <children>
@@ -93,9 +93,9 @@
             <padding><Insets bottom="10.0" left="10.0" right="10.0" top="5.0" /></padding>
         </VBox>
 
-        <!-- RIGHT: Form Panel -->
+        <!-- RIGHT: Form Panel 7CFC00-->
         <VBox prefWidth="240.0" spacing="10.0"
-              style="-fx-background-color:#efefef; -fx-border-color:#ddd; -fx-border-width:0 0 0 1;">
+              style="-fx-background-color:#7CFC00; -fx-border-color:#ddd; -fx-border-width:0 0 0 1;">
             <children>
                 <Label text="Add Student"
                        style="-fx-font-size:14px; -fx-font-weight:bold;" />

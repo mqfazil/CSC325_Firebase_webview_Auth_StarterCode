@@ -53,10 +53,6 @@
     -fx-background-color: linear-gradient(to bottom, #b07d37, #8B6914);
 }
 
-/* === RIGHT PANEL === */
-.right-panel {
-    -fx-background-color: #7CFC00; /* bright green */
-}
 
 /* === FORM BUTTONS === */
 .form-button {
